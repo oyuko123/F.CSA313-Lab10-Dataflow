@@ -172,3 +172,25 @@ score хувьсагч нь 49, 51, 54-р мөрүүдэд тодорхойло�
 
 Үр дүнг `results/mvn-verify-alldefs.txt` болон `results/jacoco-alldefs.csv` файлуудад хадгалсан.
 
+### B5. Эцсийн JaCoCo coverage
+
+Эцсийн `mvn clean verify` ажиллуулсны дараа JaCoCo тайланг шалгав.
+
+| Үзүүлэлт | Утга |
+|---|---:|
+| Instruction missed | 3 |
+| Instruction covered | 78 |
+| Branch missed | 0 |
+| Branch covered | 16 |
+| Line missed | 1 |
+| Line covered | 23 |
+
+`BRANCH_MISSED=0`, `BRANCH_COVERED=16` тул `bonus()` методын бүх 16 branch бүрэн хамрагдсан. `LINE_MISSED=1` нь классын implicit default constructor-той холбоотой бөгөөд энэ нь лабораторийн шаардлагын дагуу нэмэлт тест шаардахгүй. Иймээс B5-ийн branch coverage шаардлага бүрэн хангагдсан.
+
+### All-Defs ба Branch Coverage-ийн харьцуулалт
+
+`jacoco-alldefs.csv` тайлангаас харахад All-Defs тестүүдийн дараа 14 branch хамрагдаж, 2 branch хамрагдаагүй байсан. Өөрөөр хэлбэл branch coverage нь 14/16 буюу 87.5% байв. All-Defs нь хувьсагчийн тодорхойлолт бүрээс дор хаяж нэг use-д хүрэх замыг хамруулахыг шаарддаг боловч шийдвэр бүрийн бүх боломжит үр дүнг шалгахыг заавал шаарддаггүй. Иймээс All-Defs хангагдсан ч branch coverage 100% болохгүй байж болно.
+
+All-DU-Pairs тестүүдийг нэмсний дараа `jacoco-final.csv` тайланд 16/16 branch хамрагдаж, `BRANCH_MISSED=0` болсон. Гэсэн хэдий ч branch coverage 100% болсон нь бүх DU хос хамрагдсан гэсэн баталгаа биш. Жишээлбэл, `streak` хувьсагчийн 36-р мөрийн тодорхойлолтоос 42-р мөрийн predicate use хүртэлх DU хосыг авч үзье. `streak`-ийн 36-р мөрийн тодорхойлолт нь давталтын эхний ээлжид 41-р мөрөөр шинэчлэгддэг тул 42-р мөрөнд хүрэхээс өмнө анхны тодорхойлолт нь хүчингүй болдог. Иймээс энэ DU хос def-clear замгүй бөгөөд branch coverage 100% байсан ч уг хосыг хамруулсан гэж үзэх боломжгүй.
+
+Энэ харьцуулалт нь All-Defs, Branch Coverage болон All-DU-Pairs нь өөр өөр хамралтын шалгуур болохыг харуулж байна.
