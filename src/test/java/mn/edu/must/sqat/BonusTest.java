@@ -89,4 +89,12 @@ class BonusTest {
         ));
     }
 
+    @Test
+    @DisplayName("M2 kill: present >= 5 but best < 5")
+    void bonus_kill_M2_wrongBestVariable() {
+        assertEquals(0, DataFlowTargets.bonus(
+            new int[]{1, 1, 0, 1, 1, 1}, 6
+        ));
+    }
+
 }
